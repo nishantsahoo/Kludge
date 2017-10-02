@@ -1,0 +1,19 @@
+{
+  "name": "kludge",
+  "version": "1.0.0",
+  "description": "DBS Lab Project - Rental Service for University Students",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nishantsahoo/Kludge.git"
+  },
+  "author": "Nishant Sahoo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nishantsahoo/Kludge/issues"
+  },
+  "homepage": "https://github.com/nishantsahoo/Kludge#readme"
+}
