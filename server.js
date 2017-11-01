@@ -3,6 +3,11 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const expressSession = require('express-session');
 const passport = require('./auth/passport');
+const uid = require('uid2');
+
+var randomInt = require('random-int');
+
+console.log("Random Integer:", randomInt(100,100000000))
 
 const app = express();
 
