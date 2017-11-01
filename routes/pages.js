@@ -16,6 +16,15 @@ route.post('/login', passport.authenticate('local', {
     successRedirect: '/profile'
 }));
 
+route.post('/login', (req, res) => {
+    console.log('Log in details: ', req.body);
+    dbActions.login(
+        req.body.username,
+        req.body.password
+    );
+    res.redirect('/login.html');
+});
+
 route.post('/authorize', (req, res) => {
     models.UserLocal.findOne({
         where: {
@@ -42,14 +51,14 @@ route.get('/signup', (req, res) => {
 });
 
 route.post('/signup', (req, res) => {
+    console.log('Sign up details: ', req.body);
     dbActions.signUp(
-        req.body.name,
-        req.body.email,
         req.body.username,
-        req.body.password
-    ).then((userlocal) => {
-        res.redirect('/login.html')
-    })
+        req.body.password,
+        req.body.address,
+        req.body.phone_number
+    );
+    res.redirect('/login.html');
 });
 
 route.get('/profile', el('/login'), (req, res) => {
@@ -65,10 +74,10 @@ route.get('/auction', el('/login'), (req, res) => {
 route.get('/logout', (req, res) => {
     req.user = null;
     req.logout();
+
     req.session.destroy(() => {
         res.redirect('/login.html');
     });
-
 });
 
 module.exports = route;
