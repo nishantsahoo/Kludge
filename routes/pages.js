@@ -38,7 +38,7 @@ route.post('/authorize', (req, res) => {
 });
 
 route.get('/signup', (req, res) => {
-    res.render("signup.html", {});
+    res.redirect('/signup.html');
 });
 
 route.post('/signup', (req, res) => {
@@ -48,31 +48,25 @@ route.post('/signup', (req, res) => {
         req.body.username,
         req.body.password
     ).then((userlocal) => {
-        res.redirect('/login')
+        res.redirect('/login.html')
     })
 });
 
 route.get('/profile', el('/login'), (req, res) => {
         console.log(req.user);
-        res.render("profile", {
-            name: req.user.name,
-            email: req.user.email
-        });
+        res.redirect("/profile.html");
 });
 
 route.get('/auction', el('/login'), (req, res) => {
         console.log(req.user);
-        res.render("profile", {
-            name: req.user.name,
-            email: req.user.email
-        });
+        res.redirect("auction.html");
 });
 
 route.get('/logout', (req, res) => {
     req.user = null;
     req.logout();
     req.session.destroy(() => {
-        res.redirect('/login')
+        res.redirect('/login.html');
     });
 
 });
