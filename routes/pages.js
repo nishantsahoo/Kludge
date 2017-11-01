@@ -38,15 +38,15 @@ route.post('/authorize', (req, res) => {
 });
 
 route.get('/signup', (req, res) => {
-    res.render("signup", {});
+    res.render("signup.html", {});
 });
 
 route.post('/signup', (req, res) => {
     dbActions.signUp(
         req.body.name,
         req.body.email,
-            req.body.username,
-            req.body.password
+        req.body.username,
+        req.body.password
     ).then((userlocal) => {
         res.redirect('/login')
     })
