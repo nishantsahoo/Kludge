@@ -30,36 +30,39 @@ function signUp(username, password, address, phone_number) {
     alert("Registered");
 } // end of signUp
 
-
 function logout() {
     console.log("Logout called");
     con.connect(function(err) {
-      if (err) throw err;
-      var random_val = randomInt(100,100000);
-      console.log(`${username} ${password}`);
-      query_string = "truncate table cur_user;";
+      query_string = "truncate table cur_user";
       con.query(query_string, function (err, result, fields) {
-        if (err) throw err;
         console.log(result);
       });
     });
-}
+} // end of the function logout
 
 function login(username, password) {
-    console.log("Logout called");
+    var status = "";
     con.connect(function(err) {
-      if (err) throw err;
       // call login function
-      query_string = `select login('${username}','${password}')`;
+      query_string = `select login( '${username}', '${password}' ) as status`;
       con.query(query_string, function (err, result, fields) {
-        if (err) throw err;
-        console.log(result);
+        console.log("Status: ", result[0].status);
+        status = result[0].status;
       });
-      query_string = `insert into cur_user values( ${random_val}, '${username}');`;
-      con.query(query_string, function (err, result, fields) {
-        if (err) throw err;
-        console.log(result);
-      });
+        // var user_id;
+        //   console.log("username: ", username);
+        //   query_string = `select u_id from user where name='${username}'`;
+        //   con.query(query_string, function (err, result, fields) {
+        //     if (err) throw err;
+        //     console.log(result[0]);
+        //     user_id = result[0].u_id;
+        //   });
+
+          query_string = `insert into cur_user values(null, '${username}');`;
+          con.query(query_string, function (err, result, fields) {
+            console.log(result);
+            console.log("mai bhi");
+          });
     });    
 } // end of the function login
 
@@ -70,5 +73,5 @@ function addUser(name, email) {
 }
 
 module.exports = {
-    addUser, signUp
+    addUser, signUp, login, logout
 };
