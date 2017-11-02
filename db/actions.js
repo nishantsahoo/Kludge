@@ -100,6 +100,43 @@ function addUser(name, email) {
     })
 }
 
+function auction (itemid, price) {
+    console.log("Auction Called");
+    con.connect(function(err) {
+      query_string = `call cur_auction(2, ${itemid}, ${price})`;
+      con.query(query_string, function (err, result, fields) {
+        console.log(result);
+      });
+    });
+} // end of signUp
+
+function rent (r_id, itemid, buyer_id, dur, amt) {
+  con.connect(function(err) {
+      query_string = `call rent(${r_id}, ${itemid}, ${buyer_id}, ${dur}, ${amt})`;
+      con.query(query_string, function (err, result, fields) {
+        console.log(result);
+      });
+    });
+}
+
+function rent (r_id, itemid, buyer_id, dur, amt) {
+  con.connect(function(err) {
+      query_string = `call rent(${r_id}, ${itemid}, ${buyer_id}, ${dur}, ${amt})`;
+      con.query(query_string, function (err, result, fields) {
+        console.log(result);
+      });
+    });
+}
+
+function share (s_id, buyer1, buyer2, owner, dur, amt, itemid) {
+  con.connect(function(err) {
+      query_string = `call share_item(${s_id}, ${buyer1}, ${buyer2}, ${owner}, ${dur}, ${amt}, ${itemid})`;
+      con.query(query_string, function (err, result, fields) {
+        console.log(result);
+      });
+    });
+}
+
 module.exports = {
-    addUser, signUp, login, logout, getusername, getitems
+    addUser, signUp, login, logout, getusername, getitems, auction, rent, share
 };

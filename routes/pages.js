@@ -19,6 +19,15 @@ route.post('/login', (req, res) => {
     res.redirect('/profile.html');    
 });
 
+route.post('/auction', (req, res) => {
+    console.log('Auction details: ', req.body);
+    dbActions.auction(
+        req.body.itemid,
+        req.body.price
+    );
+    res.redirect('/profile.html');    
+});
+
 route.get('/signup', (req, res) => {
     res.redirect('/signup.html');
 });
