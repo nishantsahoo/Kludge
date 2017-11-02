@@ -15,9 +15,14 @@ const DB = new Sequelize('kludge', 'root', 'root', {
     dialect: 'mysql'
 });
 
-const CurUser = DB.define('cur_user', {
-    U_ID: Sequelize.INTEGER,
-    name: Sequelize.STRING
+const Item = DB.define('items', {
+    ITEM_ID: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+    },
+    OWNER: Sequelize.STRING,
+    PRICE: Sequelize.INTEGER,
+    DESCRIPTION: Sequelize.STRING
 });
 
 var con = mysql.createConnection({
@@ -30,6 +35,15 @@ var con = mysql.createConnection({
 function getusername()
 {
     return "sdf"
+}
+
+function getitems() {
+    con.connect(function(err) {
+      query_string = "Select * from items";
+      con.query(query_string, function (err, result, fields) {
+        console.log(result);
+      });
+  });
 }
 
 function signUp(username, password, address, phone_number) {
@@ -87,5 +101,5 @@ function addUser(name, email) {
 }
 
 module.exports = {
-    addUser, signUp, login, logout, getusername
+    addUser, signUp, login, logout, getusername, getitems
 };
