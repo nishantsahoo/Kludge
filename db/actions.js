@@ -103,25 +103,18 @@ function addUser(name, email) {
 function auction (itemid, price) {
     console.log("Auction Called");
     con.connect(function(err) {
-      query_string = `call cur_auction(2, ${itemid}, ${price})`;
+      query_string = `call cur_auction(5, ${itemid}, ${price})`;
       con.query(query_string, function (err, result, fields) {
         console.log(result);
       });
     });
 } // end of signUp
 
-function rent (r_id, itemid, buyer_id, dur, amt) {
+function rent (itemid, dur, amt) {
+  console.log("Rent is called");
+  var random_val = randomInt(100,100000);
   con.connect(function(err) {
-      query_string = `call rent(${r_id}, ${itemid}, ${buyer_id}, ${dur}, ${amt})`;
-      con.query(query_string, function (err, result, fields) {
-        console.log(result);
-      });
-    });
-}
-
-function rent (r_id, itemid, buyer_id, dur, amt) {
-  con.connect(function(err) {
-      query_string = `call rent(${r_id}, ${itemid}, ${buyer_id}, ${dur}, ${amt})`;
+      query_string = `call rent(${random_val}, ${itemid}, 2, '${dur}', ${amt})`;
       con.query(query_string, function (err, result, fields) {
         console.log(result);
       });
@@ -129,8 +122,9 @@ function rent (r_id, itemid, buyer_id, dur, amt) {
 }
 
 function share (s_id, buyer1, buyer2, owner, dur, amt, itemid) {
+  var random_val = randomInt(100,100000);
   con.connect(function(err) {
-      query_string = `call share_item(${s_id}, ${buyer1}, ${buyer2}, ${owner}, ${dur}, ${amt}, ${itemid})`;
+      query_string = `call share_item(${s_id}, ${buyer1}, ${buyer2}, ${owner}, '${dur}', ${amt}, ${itemid})`;
       con.query(query_string, function (err, result, fields) {
         console.log(result);
       });

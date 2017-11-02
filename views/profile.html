@@ -12,7 +12,11 @@
 <body>
 
 <div id="name">
-	<p style="margin-left: 14em; margin-top: 2em;" id="username"></p>
+	<p style="margin-left: 13em; margin-top: 2em;" id="username"></p>
+</div>
+
+<div style="margin-left: 13em">
+<a href="/logout">Logout</a>
 </div>
 
 <div class="container">
@@ -29,18 +33,21 @@
   </table>
 </div>
 
-<div style="margin-left: 14em">
-<button class="button">Share</button>
-<button class="button">Rent</button>
-</br>
-<a href="/logout">Logout</a>
+<div id="form-rent" style="margin-left: 14em">
+	<h3 style="font-family: monospace; text-align: center; margin-bottom: 1em; margin-left: -49em">Rent Section</h1>
+	<form method="post" action="/rent">
+	    <input type="text" placeholder="itemid" name="itemid" id="itemid"><br>
+	    <input type="text" placeholder="duration" name="duration" id="duration"><br>
+	    <input type="text" placeholder="price" name="price" id="price"><br>
+	    <input type="submit" value="Rent">
+	</form>
 </div>
 
 <div id="form-auction" style="margin-left: 14em">
 	<h3 style="font-family: monospace; text-align: center; margin-bottom: 1em; margin-left: -48em">Auction Section</h1>
 	<form method="post" action="/auction">
 	    <input type="text" placeholder="itemid" name="itemid" id="itemid"><br>
-	    <input type="password" placeholder="price" name="price" id="price"><br>
+	    <input type="text" placeholder="price" name="price" id="price"><br>
 	    <input type="submit" value="Add for Auction">
 	</form>
 </div>

@@ -19,9 +19,29 @@ route.post('/login', (req, res) => {
     res.redirect('/profile.html');    
 });
 
+route.post('/rent', (req, res) => {
+    console.log('Rent details: ', req.body);
+    dbActions.rent(
+        req.body.itemid,
+        req.body.duration,
+        req.body.price
+    );
+    res.redirect('/profile.html');    
+});
+
+
 route.post('/auction', (req, res) => {
     console.log('Auction details: ', req.body);
     dbActions.auction(
+        req.body.itemid,
+        req.body.price
+    );
+    res.redirect('/profile.html');    
+});
+
+route.post('/share', (req, res) => {
+    console.log('Share details: ', req.body);
+    dbActions.share(
         req.body.itemid,
         req.body.price
     );
