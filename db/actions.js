@@ -8,6 +8,18 @@ var randomInt = require('random-int');
 
 // Connection string, database connection should be done in this file
 
+const Sequelize = require('sequelize');
+
+const DB = new Sequelize('kludge', 'root', 'root', {
+    host: 'localhost',
+    dialect: 'mysql'
+});
+
+const CurUser = DB.define('cur_user', {
+    U_ID: Sequelize.INTEGER,
+    name: Sequelize.STRING
+});
+
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -15,19 +27,21 @@ var con = mysql.createConnection({
   database: "kludge"
 });
 
+function getusername()
+{
+    return "sdf"
+}
+
 function signUp(username, password, address, phone_number) {
     console.log("SignUp Called");
     con.connect(function(err) {
-      if (err) throw err;
       var random_val = randomInt(100,100000);
       console.log(`${username} ${password}`);
       query_string = `call register( ${random_val}, '${password}', '${address}', '${phone_number}', '${username}' )`;
       con.query(query_string, function (err, result, fields) {
-        if (err) throw err;
         console.log(result);
       });
     });
-    alert("Registered");
 } // end of signUp
 
 function logout() {
@@ -73,5 +87,5 @@ function addUser(name, email) {
 }
 
 module.exports = {
-    addUser, signUp, login, logout
+    addUser, signUp, login, logout, getusername
 };

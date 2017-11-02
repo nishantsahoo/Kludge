@@ -28,8 +28,8 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-const BandwidthRoute = require('./routes/bandwidth'); // route for Bandwidth
-app.use('/sniff/bandwidth', BandwidthRoute);
+const UserRoute = require('./routes/api/userroute'); // route for Bandwidth
+app.use('/userdata/', UserRoute);
 
 app.use(express.static(__dirname + '/views'));
 
